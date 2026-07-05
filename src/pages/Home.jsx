@@ -5,6 +5,7 @@ import HotelGrid from "../components/HotelGrid";
 import Pagination from "../components/Pagination";
 import Loader from "../components/Loader";
 import EmptyState from "../components/EmptyState";
+import "./Home.css";
 
 export default function Home() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
