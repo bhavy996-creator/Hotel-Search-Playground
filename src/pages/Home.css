@@ -34,23 +34,35 @@
 .hero::before {
   content: "";
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 260px;
-  height: 260px;
-  background-image: radial-gradient(
-    circle,
-    var(--color-accent) 0 18px,
-    transparent 19px
-  );
-  background-size: 44px 44px;
-  opacity: 0.15;
+  top: -40px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  background-color: var(--color-accent);
+  opacity: 0.18;
   z-index: -1;
+  -webkit-mask-image: radial-gradient(
+      circle at 20% 20%,
+      #000 0 34px,
+      transparent 35px
+    ),
+    radial-gradient(circle at 60% 20%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 40% 55%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 80% 55%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 20% 90%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 60% 90%, #000 0 34px, transparent 35px);
+  mask-image: radial-gradient(circle at 20% 20%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 60% 20%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 40% 55%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 80% 55%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 20% 90%, #000 0 34px, transparent 35px),
+    radial-gradient(circle at 60% 90%, #000 0 34px, transparent 35px);
 }
 
 @media (max-width: 640px) {
   .hero::before {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
 }
+
