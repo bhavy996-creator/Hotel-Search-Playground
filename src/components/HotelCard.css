@@ -5,6 +5,7 @@
   background: var(--bg-dim);
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hotel-card__photo-wrap {
@@ -72,4 +73,9 @@
   display: flex;
   justify-content: space-between;
   font-weight: 600;
+}
+
+.hotel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
