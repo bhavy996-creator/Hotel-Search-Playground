@@ -1,16 +1,31 @@
-# React + Vite
+# WanderStay — Hotel Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React app for browsing, searching, filtering, and saving hotels from the
+[Hotel Search API](https://demohotelsapi.pythonanywhere.com/).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Live API integration with in-memory caching
+- Search by name/city, filters (city, price, rating), sorting
+- Client-side pagination
+- Hotel detail page with photo gallery
+- Favorites saved to localStorage
+- Dark mode (persisted, respects system preference)
+- Loading, error, and empty states throughout
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19 + Vite, React Router, plain CSS with custom properties.
 
-## Expanding the Oxlint configuration
+## Running locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
+
+## A note on the API
+
+The API's \`limit\`/\`skip\` params don't reliably slice the response, so this
+app fetches the full hotel list once and filters/sorts/paginates on the
+client — this also makes filtering feel instant.
