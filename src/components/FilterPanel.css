@@ -1,8 +1,8 @@
 .filter-panel {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--panel-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow);
@@ -32,10 +32,11 @@
   flex-direction: column;
   gap: 6px;
   font-size: 0.78rem;
-  color: var(--text-soft);
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  opacity: 0.85;
 }
 
 .filter-field input,
