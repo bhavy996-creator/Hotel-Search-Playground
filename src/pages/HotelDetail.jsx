@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchHotelById } from "../api/hotelApi";
+import { useFavorites } from "../context/FavoritesContext";
+import Loader from "../components/Loader";
+import EmptyState from "../components/EmptyState";
 import "./HotelDetail.css";
 
 export default function HotelDetail() {
   const { id } = useParams();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [hotel, setHotel] = useState(null);
   const [activePhoto, setActivePhoto] = useState(0);
   const [status, setStatus] = useState("loading");
   const [error, setError] = useState(null);
+  const [reserved, setReserved] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     setStatus("loading");
     setActivePhoto(0);
+    setReserved(false);
 
     fetchHotelById(id)
       .then((data) => {
@@ -27,7 +33,6 @@ export default function HotelDetail() {
         setStatus("error");
       });
 
-    
     return () => {
       cancelled = true;
     };
@@ -36,7 +41,7 @@ export default function HotelDetail() {
   if (status === "loading") {
     return (
       <div className="container">
-        <p>Loading hotel…</p>
+        <Loader label="Loading hotel…" />
       </div>
     );
   }
@@ -44,13 +49,17 @@ export default function HotelDetail() {
   if (status === "error" || !hotel) {
     return (
       <div className="container">
-        <p>Couldn't load this hotel. {error?.message}</p>
-        <Link to="/">← Back to all hotels</Link>
+        <EmptyState
+          title="Couldn't load this hotel"
+          message={error?.message || "This hotel may no longer exist."}
+          actionLabel="Back to all stays"
+          onAction={() => window.history.back()}
+        />
       </div>
     );
   }
 
-  // Some hotels may only have a thumbnail and no separate photos array
+  const saved = isFavorite(hotel.id);
   const photos = hotel.photos?.length ? hotel.photos : [hotel.thumbnail];
 
   return (
@@ -73,9 +82,7 @@ export default function HotelDetail() {
                 <button
                   key={photo + index}
                   type="button"
-                  className={
-                    index === activePhoto ? "is-active" : ""
-                  }
+                  className={index === activePhoto ? "is-active" : ""}
                   onClick={() => setActivePhoto(index)}
                   aria-label={`Show photo ${index + 1}`}
                 >
@@ -102,15 +109,30 @@ export default function HotelDetail() {
             </div>
           </dl>
 
-          <button
-            type="button"
-            className="detail__book"
-            onClick={() =>
-              window.alert(`${hotel.name} reserved (demo only).`)
-            }
-          >
-            Reserve this room
-          </button>
+          <div className="detail__actions">
+            <button
+              type="button"
+              className={`detail__save ${saved ? "is-saved" : ""}`}
+              onClick={() => toggleFavorite(hotel.id)}
+              aria-pressed={saved}
+            >
+              {saved ? "♥ Saved" : "♡ Save this stay"}
+            </button>
+
+            <button
+              type="button"
+              className="detail__book"
+              onClick={() => setReserved(true)}
+            >
+              Reserve this room
+            </button>
+          </div>
+
+          {reserved && (
+            <p className="detail__confirmation">
+              ✓ {hotel.name} reserved (demo only — no real booking is made).
+            </p>
+          )}
         </div>
       </div>
     </div>

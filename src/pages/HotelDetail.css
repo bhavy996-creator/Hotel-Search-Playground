@@ -95,7 +95,32 @@
   font-weight: 600;
   cursor: pointer;
 }
+.detail__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
+.detail__save {
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.detail__save.is-saved {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.detail__confirmation {
+  margin-top: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
 @media (max-width: 800px) {
   .detail__layout {
     grid-template-columns: 1fr;
