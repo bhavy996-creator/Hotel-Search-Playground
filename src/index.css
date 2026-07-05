@@ -1,30 +1,53 @@
-:root {
-  /* ---- Colors ---- */
-  /* TODO: pick your own palette — these are placeholders */
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-accent: #f59e0b;
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
-  --bg: #ffffff;
-  --bg-dim: #f4f4f5;
-  --text: #18181b;
-  --text-soft: #52525b;
-  --border: rgba(24, 24, 27, 0.12);
+:root {
+  /* ---- Colors (from DESIGN.md) ---- */
+  --color-primary: #823b18;       /* Terracotta */
+  --color-primary-dark: #612c11;
+  --color-primary-light: #a0522d;
+  --color-accent: #feb300;        /* Marigold */
+  --color-teal: #0f727c;          /* Tertiary */
+
+  --bg: #fff8f5;                  /* Warm cream */
+  --bg-dim: #f5ece7;
+  --bg-elevated: #ffffff;
+  --text: #1e1b18;
+  --text-soft: #54433c;
+  --border: #dac1b8;
 
   /* ---- Typography ---- */
-  --font-display: "Georgia", serif;
-  --font-body: system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* ---- Shape ---- */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* ---- Shadow (tinted terracotta, not muddy grey) ---- */
+  --shadow: 0 8px 24px rgba(130, 59, 24, 0.12);
 
   color-scheme: light;
 }
 
-/* Dark mode overrides — same variable names, different values */
 [data-theme="dark"] {
-  --bg: #121212;
-  --bg-dim: #1e1e1e;
-  --text: #f4f4f5;
-  --text-soft: #a1a1aa;
-  --border: rgba(244, 244, 245, 0.12);
+  --color-primary: #ffb596;
+  --color-primary-dark: #ffdbcd;
+  --color-primary-light: #a0522d;
+  --color-accent: #ffba38;
+  --color-teal: #82d3de;
+
+  --bg: #1c1712;
+  --bg-dim: #241d17;
+  --bg-elevated: #2b2319;
+  --text: #f8efea;
+  --text-soft: #cdb8ab;
+  --border: rgba(248, 239, 234, 0.14);
+
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
   color-scheme: dark;
 }
 
@@ -41,6 +64,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #root {
@@ -54,9 +78,10 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-a { color: inherit; }
+a {
+  color: inherit;
+}
 
-/* Accessibility: visible focus ring for keyboard users */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -67,7 +92,13 @@ select:focus-visible {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
 }
