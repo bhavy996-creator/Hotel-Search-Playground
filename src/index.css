@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 :root {
+  --panel-glass: rgba(255, 255, 255, 0.75);
   /* ---- Colors (from DESIGN.md) ---- */
   --color-primary: #823b18;       /* Terracotta */
   --color-primary-dark: #612c11;
