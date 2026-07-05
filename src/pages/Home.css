@@ -1,3 +1,56 @@
 .container h1 {
   margin-bottom: 24px;
 }
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 48px 20px 40px;
+  overflow: hidden;
+}
+
+.hero__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.hero__heading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.25;
+}
+
+.hero__heading em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+/* Decorative dot-circle pattern, top-right corner — matches the mockup */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  background-image: radial-gradient(
+    circle,
+    var(--color-accent) 0 18px,
+    transparent 19px
+  );
+  background-size: 44px 44px;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+@media (max-width: 640px) {
+  .hero::before {
+    width: 180px;
+    height: 180px;
+  }
+}

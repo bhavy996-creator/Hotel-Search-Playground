@@ -26,7 +26,14 @@ export default function Home() {
 
   return (
     <div className="container">
-      <h1>Find your stay</h1>
+      <div className="hero">
+  <span className="hero__eyebrow">Boutique Escapes</span>
+  <h1 className="hero__heading">
+    Find your stay in the heart of
+    <br />
+    <em>Incredible India</em>
+  </h1>
+</div>
 
       <FilterPanel
         filters={filters}
