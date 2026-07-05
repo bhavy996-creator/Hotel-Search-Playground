@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { DEFAULT_FILTERS, useHotels } from "../hooks/useHotels";
-import HotelCard from "../components/HotelCard";
+import HotelGrid from "../components/HotelGrid";
+import Pagination from "../components/Pagination";
 
 export default function Home() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [page, setPage] = useState(1);
 
-  const { hotels, totalResults, status } = useHotels(filters, page);
+  const { hotels, totalResults, totalPages, status } = useHotels(
+    filters,
+    page
+  );
+
+  const handlePageChange = (nextPage) => {
+    setPage(nextPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="container">
@@ -16,17 +25,14 @@ export default function Home() {
       {status === "loading" && <p>Loading hotels…</p>}
 
       {status === "success" && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "20px",
-          }}
-        >
-          {hotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
-          ))}
-        </div>
+        <>
+          <HotelGrid hotels={hotels} />
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </>
       )}
     </div>
   );
