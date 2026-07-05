@@ -2,18 +2,27 @@
   background: var(--bg-dim);
   border-top: 1px solid var(--border);
   margin-top: auto;
-  padding: 24px 0;
+  padding: 20px 0;
 }
 
 .site-footer__inner {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.85rem;
   color: var(--text-soft);
+  text-align: center;
 }
 
 .site-footer p {
   margin: 0;
+}
+
+@media (max-width: 600px) {
+  .site-footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
 }
