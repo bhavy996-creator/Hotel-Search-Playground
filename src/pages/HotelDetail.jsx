@@ -27,8 +27,7 @@ export default function HotelDetail() {
         setStatus("error");
       });
 
-    // Cleanup: if the user navigates away before the fetch finishes,
-    // don't call setState on an unmounted component.
+    
     return () => {
       cancelled = true;
     };
